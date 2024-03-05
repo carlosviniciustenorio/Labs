@@ -1,0 +1,14 @@
+C:\Projetos\Labs\WSCustomer\bin\Debug\net8.0\WSCustomer.exe
+C:\Projetos\Labs\WSCustomer\bin\Debug\net8.0\WSCustomer.deps.json
+C:\Projetos\Labs\WSCustomer\bin\Debug\net8.0\WSCustomer.runtimeconfig.json
+C:\Projetos\Labs\WSCustomer\bin\Debug\net8.0\WSCustomer.dll
+C:\Projetos\Labs\WSCustomer\bin\Debug\net8.0\WSCustomer.pdb
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.AssemblyInfoInputs.cache
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.AssemblyInfo.cs
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.csproj.CoreCompileInputs.cache
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.dll
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\refint\WSCustomer.dll
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.pdb
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.genruntimeconfig.cache
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\ref\WSCustomer.dll

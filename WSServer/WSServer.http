@@ -1,0 +1,6 @@
+@WSServer_HostAddress = http://localhost:5273
+
+GET {{WSServer_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
