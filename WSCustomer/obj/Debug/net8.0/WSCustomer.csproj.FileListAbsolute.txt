@@ -12,3 +12,4 @@ C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\refint\WSCustomer.dll
 C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.pdb
 C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.genruntimeconfig.cache
 C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\ref\WSCustomer.dll
+C:\Projetos\Labs\WSCustomer\obj\Debug\net8.0\WSCustomer.sourcelink.json

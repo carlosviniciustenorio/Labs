@@ -31,3 +31,4 @@ C:\Projetos\Labs\WSServer\obj\Debug\net8.0\refint\WSServer.dll
 C:\Projetos\Labs\WSServer\obj\Debug\net8.0\WSServer.pdb
 C:\Projetos\Labs\WSServer\obj\Debug\net8.0\WSServer.genruntimeconfig.cache
 C:\Projetos\Labs\WSServer\obj\Debug\net8.0\ref\WSServer.dll
+C:\Projetos\Labs\WSServer\obj\Debug\net8.0\WSServer.sourcelink.json

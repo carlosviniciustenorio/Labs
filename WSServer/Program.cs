@@ -10,6 +10,7 @@ var app = builder.Build();
 app.UseWebSockets();
 app.Map("/", async context =>
 {
+    double cotacao = 1.10;
     if (!context.WebSockets.IsWebSocketRequest)
         context.Response.StatusCode = 400;
     else
@@ -18,10 +19,12 @@ app.Map("/", async context =>
         while (true)
         {
             await webSocket.SendAsync(
-                Encoding.ASCII.GetBytes($".NET Rocks -> {DateTime.Now}"),
+                Encoding.ASCII.GetBytes($"Preco da cotacão ITUB3: {cotacao}"),
                 WebSocketMessageType.Text,
                 true, CancellationToken.None);
             await Task.Delay(1000);
+            Console.WriteLine($"Cotação: {cotacao}");
+            cotacao += 1;
         }
     }
 });
