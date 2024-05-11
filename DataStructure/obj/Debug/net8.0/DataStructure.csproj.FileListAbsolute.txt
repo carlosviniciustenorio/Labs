@@ -1,0 +1,15 @@
+/home/tenorio/Desktop/Development/Labs/DataStructure/bin/Debug/net8.0/DataStructure
+/home/tenorio/Desktop/Development/Labs/DataStructure/bin/Debug/net8.0/DataStructure.deps.json
+/home/tenorio/Desktop/Development/Labs/DataStructure/bin/Debug/net8.0/DataStructure.runtimeconfig.json
+/home/tenorio/Desktop/Development/Labs/DataStructure/bin/Debug/net8.0/DataStructure.dll
+/home/tenorio/Desktop/Development/Labs/DataStructure/bin/Debug/net8.0/DataStructure.pdb
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/DataStructure.GeneratedMSBuildEditorConfig.editorconfig
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/DataStructure.AssemblyInfoInputs.cache
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/DataStructure.AssemblyInfo.cs
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/DataStructure.csproj.CoreCompileInputs.cache
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/DataStructure.sourcelink.json
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/DataStructure.dll
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/refint/DataStructure.dll
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/DataStructure.pdb
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/DataStructure.genruntimeconfig.cache
+/home/tenorio/Desktop/Development/Labs/DataStructure/obj/Debug/net8.0/ref/DataStructure.dll
