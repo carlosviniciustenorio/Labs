@@ -1,65 +1,82 @@
-// using System;
-// using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 
-// class HashTable {
-//     private const int SIZE = 10;
-//     private List<int>[] table;
+class HashTable<TKey, TValue> {
+    private const int SIZE = 10;
+    private LinkedList<KeyValuePair<TKey, TValue>>[] table;
 
-//     // Construtor
-//     public HashTable() {
-//         table = new List<int>[SIZE];
-//         for (int i = 0; i < SIZE; i++) {
-//             table[i] = new List<int>();
-//         }
-//     }
+    // Construtor
+    public HashTable() {
+        table = new LinkedList<KeyValuePair<TKey, TValue>>[SIZE];
+        for (int i = 0; i < SIZE; i++) {
+            table[i] = new LinkedList<KeyValuePair<TKey, TValue>>();
+        }
+    }
 
-//     // Função de hash simples
-//     private int HashFunction(int key) {
-//         return key % SIZE;
-//     }
+    // Função de hash simples
+    private int HashFunction(TKey key) {
+        int hashCode = key.GetHashCode();
+        return Math.Abs(hashCode) % SIZE;
+    }
 
-//     // Inserção (O(1))
-//     public void Insert(int key) {
-//         int index = HashFunction(key);
-//         table[index].Add(key);
-//     }
+    // Inserção (O(1))
+    public void Insert(TKey key, TValue value) {
+        int index = HashFunction(key);
+        foreach (var pair in table[index]) {
+            if (pair.Key.Equals(key)) {
+                throw new ArgumentException("Chave já existe na hashtable.");
+            }
+        }
+        table[index].AddLast(new KeyValuePair<TKey, TValue>(key, value));
+    }
 
-//     // Busca (O(n) no pior caso, mas O(1) na média de tempo)
-//     public bool Search(int key) {
-//         int index = HashFunction(key);
-//         foreach (int item in table[index]) {
-//             if (item == key)
-//                 return true;
-//         }
-//         return false;
-//     }
+    // Busca (O(1) na média de tempo)
+    public TValue Search(TKey key) {
+        int index = HashFunction(key);
+        foreach (var pair in table[index]) {
+            if (pair.Key.Equals(key)) {
+                return pair.Value;
+            }
+        }
+        throw new KeyNotFoundException("Chave não encontrada na hashtable.");
+    }
 
-//     // Exclusão (O(1) no pior caso, mas O(n) na média de tempo)
-//     public void Delete(int key) {
-//         int index = HashFunction(key);
-//         table[index].Remove(key);
-//     }
-// }
+    // Exclusão (O(1) na média de tempo)
+    public void Delete(TKey key) {
+        int index = HashFunction(key);
+        bool removed = false;
+        foreach (var pair in table[index]) {
+            if (pair.Key.Equals(key)) {
+                table[index].Remove(pair);
+                removed = true;
+                break;
+            }
+        }
+        if (!removed) {
+            throw new KeyNotFoundException("Chave não encontrada na hashtable.");
+        }
+    }
+}
 
-// class Program {
-//     static void Main(string[] args) {
-//         HashTable hashTable = new HashTable();
+class Program {
+    static void Main(string[] args) {
+        HashTable<string, int> hashTable = new HashTable<string, int>();
 
-//         // Inserção (O(1))
-//         hashTable.Insert(10);
-//         hashTable.Insert(20);
-//         hashTable.Insert(30);
+        // Inserção (O(1))
+        hashTable.Insert("A", 1);
+        hashTable.Insert("B", 2);
+        hashTable.Insert("C", 3);
 
-//         // Busca (O(1) na média de tempo)
-//         Console.WriteLine("Busca por 20: " + hashTable.Search(20));
+        // Busca (O(1) na média de tempo)
+        Console.WriteLine("Busca por 'B': " + hashTable.Search("B"));
 
-//         // Exclusão (O(1) na média de tempo)
-//         hashTable.Delete(20);
-//         Console.WriteLine("Busca por 20 após exclusão: " + hashTable.Search(20));
-//     }
-// }
-
-
-// // Inserção: A função de dispersão é aplicada à chave para calcular o índice na tabela. A inserção em uma lista vinculada em um índice específico é uma operação de tempo constante, O(1).
-// // Busca: Embora a complexidade de tempo na pior situação seja O(n) devido a colisões, na média, a busca é O(1) devido à dispersão uniforme dos elementos.
-// // Exclusão: Assim como a busca, a exclusão é O(1) no pior caso, mas O(n) na média, devido à necessidade de procurar o elemento na lista vinculada.
+        // Exclusão (O(1) na média de tempo)
+        hashTable.Delete("B");
+        Console.WriteLine("Busca por 'B' após exclusão: ");
+        try {
+            Console.WriteLine(hashTable.Search("B"));
+        } catch (KeyNotFoundException) {
+            Console.WriteLine("Chave não encontrada na hashtable.");
+        }
+    }
+}
