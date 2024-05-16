@@ -1,113 +1,112 @@
-// using System;
-
-// class Node {
-//     public int data;
+// LinkedList linkedList = new();
+// linkedList.Insert(10);
+// linkedList.Insert(20);
+// linkedList.Insert(30);
+// linkedList.Insert(5);
+//
+// Console.WriteLine("Try search a value into LinkedList, press a number now.");
+// Console.WriteLine("If your number is found, it will be printed, but otherwise -1 will be returned.");
+// var valueToSearch = Console.ReadLine();
+// Console.WriteLine($"Searching the node with value {valueToSearch}: value searched: {linkedList.Search(Convert.ToInt32(valueToSearch))}");
+//
+// Console.WriteLine("Try to delete a value into LinkedList, press a number now.");
+// var valueToDelete = Console.ReadLine();
+// Console.WriteLine($"Deleted: {linkedList.Delete(Convert.ToInt32(valueToDelete))}");
+// Console.WriteLine($"Trying to search the deleted value: {valueToDelete}: value searched: {linkedList.Search(Convert.ToInt32(valueToDelete))}");
+//
+// Console.WriteLine("Try to update a value into LinkedList, press a number who you wanna update now.");
+// var valueToUpdate = Console.ReadLine();
+// Console.WriteLine("Press a number to be the new value of your node.");
+// var newValue = Console.ReadLine();
+//
+// linkedList.Update(Convert.ToInt32(valueToUpdate), Convert.ToInt32(newValue));
+// Console.WriteLine($"Updated");
+// Console.WriteLine($"Trying to search the updated value: {valueToUpdate}: the actually value finded: {linkedList.Search(Convert.ToInt32(newValue))}");
+//
+// public class Node
+// {
+//     public int Value;
 //     public Node next;
-
-//     public Node(int d) {
-//         data = d;
+//
+//     public Node(int value)
+//     {
+//         Value = value;
 //         next = null;
 //     }
 // }
-
-// class LinkedList {
-//     private Node head;
-
-//     // Construtor
-//     public LinkedList() {
+//
+// public class LinkedList
+// {
+//     public Node head;
+//
+//     public LinkedList()
+//     {
 //         head = null;
 //     }
-
-//     // Inserção no início da lista (O(1))
-//     public void Insert(int newData) {
-//         Node newNode = new Node(newData);
-//         newNode.next = head;
-//         head = newNode;
+//     
+//     // Average: O(1) - Worst: O(1)
+//     public void Insert(int value)
+//     {
+//         Node node = new(value);
+//         node.next = head;
+//         head = node;
 //     }
-
-//     // Busca (O(n))
-//     public bool Search(int key) {
+//     
+//     // Average: O(1) - Worst: O(n)
+//     public int Search(int value)
+//     {
 //         Node current = head;
-//         while (current != null) {
-//             if (current.data == key)
-//                 return true;
+//         while (current != null)
+//         {
+//             if (current.Value == value)
+//                 return current.Value;
+//
 //             current = current.next;
 //         }
-//         return false;
+//
+//         return -1;
 //     }
-
-//     // Exclusão (O(n))
-//     public void Delete(int key) {
-//         Node temp = head;
-//         Node prev = null;
-
-//         if (temp != null && temp.data == key) {
-//             head = temp.next;
-//             return;
-//         }
-
-//         while (temp != null && temp.data != key) {
-//             prev = temp;
-//             temp = temp.next;
-//         }
-
-//         if (temp == null) return;
-
-//         prev.next = temp.next;
-//     }
-
-//     // Atualização (O(n))
-//     public void Update(int oldData, int newData) {
+//     
+//     // Average: O(1) - Worst: O(n)
+//     public bool Delete(int value)
+//     {
 //         Node current = head;
-//         while (current != null) {
-//             if (current.data == oldData) {
-//                 current.data = newData;
+//         Node prev = null;
+//
+//         if (current.Value == value)
+//         {
+//             head = current.next;
+//             return true;
+//         }
+//
+//         while (current != null && current.Value != value)
+//         {
+//             prev = current;
+//             current = current.next;
+//         }
+//
+//         if (current is null)
+//             return false;
+//
+//         prev.next = current.next;
+//         return true;
+//     }
+//
+//     // Average: O(1) - Worst: O(n)
+//     public void Update(int value, int newValue)
+//     {
+//         Node current = head;
+//         while (current != null)
+//         {
+//             if (current.Value == value)
+//             {
+//                 current.Value = newValue;
 //                 return;
 //             }
+//
 //             current = current.next;
 //         }
-//     }
-
-//     // Exibição da lista
-//     public void Display() {
-//         Node current = head;
-//         while (current != null) {
-//             Console.Write(current.data + " ");
-//             current = current.next;
-//         }
-//         Console.WriteLine();
+//
+//         throw new KeyNotFoundException("Valor informado não localizado");
 //     }
 // }
-
-// class Program {
-//     static void Main(string[] args) {
-//         LinkedList list = new LinkedList();
-
-//         // Inserção (O(1))
-//         list.Insert(10);
-//         list.Insert(20);
-//         list.Insert(30);
-
-//         Console.WriteLine("Lista atual:");
-//         list.Display();
-
-//         // Busca (O(n))
-//         Console.WriteLine("Busca por 20: " + list.Search(20));
-
-//         // Exclusão (O(n))
-//         list.Delete(20);
-//         Console.WriteLine("Lista após excluir 20:");
-//         list.Display();
-
-//         // Atualização (O(n))
-//         list.Update(10, 15);
-//         Console.WriteLine("Lista após atualizar 10 para 15:");
-//         list.Display();
-//     }
-// }
-
-
-// // Inserção: A inserção é feita no início da lista, então é uma operação de tempo constante, O(1).
-// // Busca: Para procurar um elemento, a lista é percorrida sequencialmente, o que resulta em uma complexidade de tempo linear, O(n).
-// // Exclusão: Similar à busca, a lista é percorrida para encontrar o elemento a ser excluído, então a exclusão também é uma operação de tempo linear, O(n).
-// // Atualização: Para atualizar um valor, a lista é percorrida até encontrar o elemento desejado, então a operação é linear, O(n).

@@ -1,126 +1,129 @@
-// using System;
-
-// class Node {
-//     public int data;
-//     public Node left, right;
-
-//     public Node(int value) {
-//         data = value;
-//         left = right = null;
-//     }
-// }
-
-// class BinarySearchTree {
-//     private Node root;
-
-//     // Construtor
-//     public BinarySearchTree() {
-//         root = null;
-//     }
-
-//     // Inserção (O(logn) no caso médio, mas O(n) no pior caso)
-//     public void Insert(int key) {
-//         root = InsertRec(root, key);
-//     }
-
-//     private Node InsertRec(Node root, int key) {
-//         if (root == null) {
-//             root = new Node(key);
+// using System.Linq;
+//
+// class Node
+// {
+//     public int Data;
+//     public Node Left, Right;    
+//     
+//     public Node(int value) => (Data, Left, Right) = (value, null,null);
+// }        
+//
+// class BinaryTree
+// {
+//     public Node Root;
+//     
+//     public BinaryTree() => Root = null;
+//
+//     // Average O(m * log n) | Worst O(m * n)
+//     public Node Insert(List<int> value)
+//     {
+//         foreach (var item in value)
+//         {
+//             Root = InsertRec(Root, item);
+//         }
+//         return Root; 
+//     } 
+//     
+//     // Average O(log n) | Average O(n)
+//     public Node InsertRec(Node root, int value)
+//     {
+//         if(root == null)
+//         {
+//             root = new Node(value);
 //             return root;
 //         }
-
-//         if (key < root.data)
-//             root.left = InsertRec(root.left, key);
-//         else if (key > root.data)
-//             root.right = InsertRec(root.right, key);
-
+//         
+//         if(value < root.Data)
+//             root.Left = InsertRec(root.Left, value);
+//         else if(value > root.Data)
+//             root.Right = InsertRec(root.Right,value);
+//
 //         return root;
 //     }
-
-//     // Busca (O(logn) no caso médio, mas O(n) no pior caso)
-//     public bool Search(int key) {
-//         return SearchRec(root, key);
+//
+//     // Average O(n)
+//     public string Read()
+//     {
+//         List<int> result = new();
+//         ReadInrOrderTransversal(Root, result);
+//         return string.Join(", ", result);
 //     }
-
-//     private bool SearchRec(Node root, int key) {
-//         if (root == null)
+//
+//     // Average O(log n) | Worst O(n)
+//     public void ReadInrOrderTransversal(Node root, List<int> result)
+//     {
+//         if(root != null)
+//         {
+//             ReadInrOrderTransversal(root.Left, result);
+//             result.Add(root.Data);
+//             ReadInrOrderTransversal(root.Right, result);
+//         }
+//     }
+//
+//     // Average O(log n) | Worst O(n)
+//     public bool Search(Node root, int value)
+//     {
+//         if(root is null)
 //             return false;
-
-//         if (root.data == key)
-//             return true;
-
-//         if (key < root.data)
-//             return SearchRec(root.left, key);
-//         else
-//             return SearchRec(root.right, key);
+//
+//         if(value < root.Data)
+//             return Search(root.Left, value);
+//         if(value > root.Data)
+//             return Search(root.Right, value);
+//
+//         return true;
 //     }
-
-//     // Exclusão (O(logn) no caso médio, mas O(n) no pior caso)
-//     public void Delete(int key) {
-//         root = DeleteRec(root, key);
-//     }
-
-//     private Node DeleteRec(Node root, int key) {
+//
+//     // Average O(log n) | O(n)
+//     public Node Delete(Node root, int value)
+//     {
 //         if (root == null)
-//             return root;
-
-//         if (key < root.data)
-//             root.left = DeleteRec(root.left, key);
-//         else if (key > root.data)
-//             root.right = DeleteRec(root.right, key);
+//             return null;
+//
+//         if (value < root.Data)
+//             root.Left = Delete(root.Left, value);
+//         else if (value > root.Data)
+//             root.Right = Delete(root.Right, value);
 //         else {
-//             // Nó com um ou sem filho
-//             if (root.left == null)
-//                 return root.right;
-//             else if (root.right == null)
-//                 return root.left;
-
-//             // Nó com dois filhos: Encontra o sucessor do nó
-//             root.data = MinValue(root.right);
-
-//             // Exclui o sucessor
-//             root.right = DeleteRec(root.right, root.data);
+//             // Caso 1: nó sem filho ou com apenas um filho
+//             if (root.Left == null)
+//                 return root.Right;
+//             else if (root.Right == null)
+//                 return root.Left;
+//             
+//             // Caso 2: nó com dois filhos
+//             // Encontrar o sucessor (menor nó na subárvore direita) 
+//             root.Data = MinValue(root.Right);
+//
+//             // Excluir o sucessor da subárvore direita
+//             root.Right = Delete(root.Right, root.Data);
 //         }
-
 //         return root;
 //     }
-
-//     private int MinValue(Node node) {
-//         int minv = node.data;
-//         while (node.left != null) {
-//             minv = node.left.data;
-//             node = node.left;
-//         }
-//         return minv;
+//
+// private int MinValue(Node node)
+// {
+//     int minv = node.Data;
+//     while (node.Left != null)
+//     {
+//         minv = node.Left.Data;
+//         node = node.Left;
+//     }
+//     return minv;
+// }
+//
+//     
+// }
+//
+// class Program 
+// {
+//     static void Main(String[] args) {
+//         BinaryTree binaryTree = new();
+//         var response = binaryTree.Insert(new List<int>(){5,3,6,2,4,7,1,12,10,11,9});
+//         Console.WriteLine("Inorder traversal: " + binaryTree.Read());
+//         Console.WriteLine($"Elemento existe: {binaryTree.Search(binaryTree.Root, 10)}");
+//         Console.WriteLine($"Deletando elemento:");
+//         binaryTree.Delete(binaryTree.Root, 10);
+//         Console.WriteLine($"Elemento existe: {binaryTree.Search(binaryTree.Root, 10)}");
 //     }
 // }
-
-// class Program {
-//     static void Main(string[] args) {
-//         BinarySearchTree tree = new BinarySearchTree();
-
-//         // Inserção (O(logn) no caso médio, mas O(n) no pior caso)
-//         tree.Insert(50);
-//         tree.Insert(30);
-//         tree.Insert(20);
-//         tree.Insert(40);
-//         tree.Insert(70);
-//         tree.Insert(60);
-//         tree.Insert(80);
-
-//         // Busca (O(logn) no caso médio, mas O(n) no pior caso)
-//         Console.WriteLine("Busca por 20: " + tree.Search(20));
-//         Console.WriteLine("Busca por 90: " + tree.Search(90));
-
-//         // Exclusão (O(logn) no caso médio, mas O(n) no pior caso)
-//         tree.Delete(20);
-//         Console.WriteLine("Busca por 20 após exclusão: " + tree.Search(20));
-//     }
-// }
-
-// // Nesta implementação:
-
-// // Inserção: A inserção em uma árvore de busca binária é O(logn) no caso médio, mas pode ser O(n) no pior caso quando a árvore se torna desbalanceada.
-// // Busca: Assim como a inserção, a busca é O(logn) no caso médio e O(n) no pior caso.
-// // Exclusão: A exclusão é semelhante à inserção e à busca em termos de complexidade de tempo.
-// // Esta implementação é uma versão básica e não aborda otimizações avançadas para manter a árvore balanceada em todos os momentos.
