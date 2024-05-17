@@ -1,83 +1,85 @@
-// using System;
-// using System.Collections.Generic;
+// HashTable<object,object> hashTable = new();
+// hashTable.Insert("A", 1);
+// hashTable.Insert(2, "B");
+// hashTable.Insert("1", "C");
+// hashTable.Insert(new { value = "car"}, "Camaro");
 //
-// class HashTable<TKey, TValue> {
-//     private const int SIZE = 10;
+// Console.WriteLine($"Result: {hashTable.Search(Convert.ToInt32(2))}");
+// Console.WriteLine($"Result: {hashTable.Search("A")}");
+// Console.WriteLine($"Result: {hashTable.Search("1")}");
+// Console.WriteLine($"Result: {hashTable.Search(new { value = "car"})}");
+//
+// Console.WriteLine($"Deleting: {new { value = "car"}}");
+// hashTable.Delete(new { value = "car"});
+//
+// Console.WriteLine($"Result search new {{ value = \"car\"}}: {hashTable.Search(new { value = "car"})}");
+//
+// // Console.WriteLine("Set a value to search on hashtable");
+// // var valueToSearch = Console.ReadLine();
+// // Console.WriteLine($"Result: {hashTable.Search(Convert.ToInt32(valueToSearch))}");
+//
+// class HashTable<TKey, TValue>
+// {
+//     private const int capacity = 16;
 //     private LinkedList<KeyValuePair<TKey, TValue>>[] table;
-//
-//     // Construtor
-//     public HashTable() {
-//         table = new LinkedList<KeyValuePair<TKey, TValue>>[SIZE];
-//         for (int i = 0; i < SIZE; i++) {
+//     
+//     public HashTable()
+//     {
+//         table = new LinkedList<KeyValuePair<TKey, TValue>>[capacity];
+//         for (int i = 0; i < capacity; i++)
+//         {
 //             table[i] = new LinkedList<KeyValuePair<TKey, TValue>>();
 //         }
 //     }
-//
-//     // Função de hash simples
-//     private int HashFunction(TKey key) {
-//         int hashCode = key.GetHashCode();
-//         return Math.Abs(hashCode) % SIZE;
-//     }
-//
-//     // Inserção (O(1))
-//     public void Insert(TKey key, TValue value) {
-//         int index = HashFunction(key);
-//         foreach (var pair in table[index]) {
-//             if (pair.Key.Equals(key)) {
-//                 throw new ArgumentException("Chave já existe na hashtable.");
-//             }
+//     
+//     // Average: O(1) or constant time - Worst: O(n) or linear time
+//     public void Insert(TKey key, TValue value)
+//     {
+//         var index = GetIndex(key);
+//         foreach (var pair in table[index])
+//         {
+//             if (pair.Key.Equals(key))
+//                 throw new ArgumentException("A chave já existe na tabela");
 //         }
+//         
 //         table[index].AddLast(new KeyValuePair<TKey, TValue>(key, value));
 //     }
-//
-//     // Busca (O(1) na média de tempo)
-//     public TValue Search(TKey key) {
-//         int index = HashFunction(key);
-//         foreach (var pair in table[index]) {
-//             if (pair.Key.Equals(key)) {
-//                 return pair.Value;
-//             }
+//     
+//     // Average: O(1) or constant time - Worst: O(n) or linear time
+//     public KeyValuePair<TKey, TValue> Search(TKey key)
+//     {
+//         var index = GetIndex(key);
+//         KeyValuePair<TKey, TValue> result = new();
+//         
+//         foreach (var pair in table[index])
+//         {
+//             if (pair.Key.Equals(key))
+//                 result = pair;
 //         }
-//         throw new KeyNotFoundException("Chave não encontrada na hashtable.");
+//
+//         if (result.Key is null)
+//             throw new KeyNotFoundException("Chave informada não localizada");
+//
+//         return result;
+//     }
+//     
+//     // Average: O(1) or constant time - Worst: O(n) or linear time
+//     public void Delete(TKey key)
+//     {
+//         var index = GetIndex(key);
+//         foreach (var item in table[index])
+//         {
+//             if (item.Key.Equals(key))
+//                 table[index].Remove(item);
+//             return;
+//         }
+//
+//         throw new KeyNotFoundException("Chave informada não localizada");
 //     }
 //
-//     // Exclusão (O(1) na média de tempo)
-//     public void Delete(TKey key) {
-//         int index = HashFunction(key);
-//         bool removed = false;
-//         foreach (var pair in table[index]) {
-//             if (pair.Key.Equals(key)) {
-//                 table[index].Remove(pair);
-//                 removed = true;
-//                 break;
-//             }
-//         }
-//         if (!removed) {
-//             throw new KeyNotFoundException("Chave não encontrada na hashtable.");
-//         }
-//     }
-// }
-//
-// class Program {
-//     static void Main(string[] args) {
-//         HashTable<string, int> hashTable = new HashTable<string, int>();
-//
-//         // Inserção (O(1))
-//         hashTable.Insert("A", 1);
-//         hashTable.Insert("B", 2);
-//         hashTable.Insert("C", 3);
-//         hashTable.Insert("D", 4);
-//
-//         // Busca (O(1) na média de tempo)
-//         Console.WriteLine("Busca por 'B': " + hashTable.Search("B"));
-//
-//         // Exclusão (O(1) na média de tempo)
-//         hashTable.Delete("B");
-//         Console.WriteLine("Busca por 'B' após exclusão: ");
-//         try {
-//             Console.WriteLine(hashTable.Search("B"));
-//         } catch (KeyNotFoundException) {
-//             Console.WriteLine("Chave não encontrada na hashtable.");
-//         }
+//     public int GetIndex(TKey key)
+//     {
+//         var hash = key.GetHashCode();
+//         return Math.Abs(hash) % capacity;
 //     }
 // }
