@@ -2,7 +2,7 @@
 //
 // int[] QuickSort(int[] array)
 // {
-//     if (array.Length == 0 || array.Length == 1) return array;
+//     if (array.Length <= 1) return array;
 //     
 //     int pointer = array[0];
 //     int[] head = array.Where(d => d < pointer).ToArray();
