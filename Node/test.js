@@ -1,64 +1,34 @@
-class HashTable{
-    
-    constructor(length){
-        this.data = new Array(length);
-    }
+function heapify(array, n, i){
+    let largest = i;
+    let left = 2 * i + 1;
+    let right = 2 * i + 2;
 
-    generateHash(key){
-        let hash = 0;
-        for(let c = 0; c < key.length; c++){
-            hash += key.charCodeAt(c);
-        }
-        return hash % this.data.length;
-    }
+    if(left < n && array[left] > array[largest])
+        largest = left;
 
-    set(key, value){
-        const index = this.generateHash(key);
-        if(this.data[index]){
-            for(let i = 0; i < this.data[index].length; i++){
-                if(this.data[index][i][0] == key)
-                    return `The key ${key} already exist!`;
-            }
-        }
+    if(right < n && array[right] > array[largest])
+        largest = right;
 
-        this.data[index] = [key,value];
-        return `Key ${key} was inserted`;
-    }
-
-    search(key){
-        const index = this.generateHash(key);
-        const bucket = this.data[index];
-        if(this.data[index]){
-            for(let i = 0; i < bucket.length; i++){
-                if(bucket[i][0] == key){
-                    return bucket;
-                }
-            }
-        }
-
-        return "The data not exist!";
-    }
-
-    remove(key){
-        const index = this.generateHash(key);
-        const bucket = this.data[index];
-
-        if(bucket){
-            for(let i = 0; i < bucket.length; i++){
-                if(bucket[i][0] == key){
-                    bucket.splice(0,1);
-                }
-            }
-        }
-
-        return "The data not exist!";
+    if(largest != i){
+        [array[i], array[largest]] = [array[largest], array[i]];
+        heapify(array, n, largest);
     }
 }
 
-const hashTable = new HashTable(10);
-console.log(hashTable.set("5", "b"));
-console.log(hashTable.set("6", "c"));
-console.log(hashTable.search("5"));
-hashTable.remove("5");
-console.log(hashTable.search("5"));
-console.log(hashTable.search("6"));
+function heapSort(array){
+    let n = array.length;
+
+    for(let i = Math.floor(n / 2); i >= 0; i--){
+        heapify(array, n, i);
+    }
+}
+
+
+let arr = [6,12,7,9,10,20,5,14];
+console.log("Array inicial:");
+console.log(arr);
+
+heapSort(arr);
+
+console.log("Array ordenado:");
+console.log(arr);

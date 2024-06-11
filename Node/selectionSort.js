@@ -5,8 +5,7 @@ console.log(arraySorted);
 
 function sort(array){
     const lengthArray = array.length;
-    let tempValue = 0;
-
+    
     for(let i = 0; i < lengthArray - 1; i++){
         let min_index = i;
 
@@ -15,11 +14,8 @@ function sort(array){
                 min_index = j;
         }
 
-        if(array[i] > array[min_index]){
-            tempValue = array[i];
-            array[i] = array[min_index];
-            array[min_index] = tempValue;
-        }
+        if(array[i] > array[min_index])
+            [array[i], array[min_index]] = [array[min_index], array[i]];
     }
     return array;
 }
