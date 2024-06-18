@@ -1,44 +1,33 @@
-function heapify(arr, n, i) {
-    let largest = i; // Inicializa o maior como raiz
-    let left = 2 * i + 1; // Filho à esquerda
-    let right = 2 * i + 2; // Filho à direita
+function heapify(array, n, i){
+    let left = i * 2 + 1;
+    let right = i * 2 + 2;
+    let largest = i;
 
-    // Se o filho à esquerda é maior que a raiz
-    if (left < n && arr[left] > arr[largest]) {
+    if(left < n && array[left] > array[largest])
         largest = left;
-    }
 
-    // Se o filho à direita é maior que o maior até agora
-    if (right < n && arr[right] > arr[largest]) {
+    if(right < n && array[right] > array[largest])
         largest = right;
-    }
 
-    // Se o maior não é a raiz
-    if (largest != i) {
-        [arr[i], arr[largest]] = [arr[largest], arr[i]]; // Troca
-
-        // Recursivamente heapifica a subárvore afetada
-        heapify(arr, n, largest);
+    if(largest != i){
+        [array[i], array[largest]] = [array[largest], array[i]];
+        heapify(array, n, largest); 
     }
 }
 
-function heapSort(arr){
-    let n = arr.length;
-
-    // Constrói o max heap (reorganiza o array)
-    for (let i = Math.floor(n / 2) - 1; i >= 0; i--) {
-        heapify(arr, n, i);
+function heapSort(array){
+    let n = array.length;
+    for(let i = Math.floor((n/2) - 1); i >= 0; i--){
+        heapify(array, n, i);
     }
 
-    // Extrai um por um os elementos do heap
-    for (let i = n - 1; i > 0; i--) {
-        // Move a raiz atual para o fim
-        [arr[0], arr[i]] = [arr[i], arr[0]];
+    for(let i = n - 1; i > 0; i--){
+        [array[0], array[i]] = [array[i], array[0]];
 
-        // Chama heapify na heap reduzida
-        heapify(arr, i, 0);
+        heapify(array, i, 0);
     }
 }
+
 
 let arr = [6,12,7,9,10,20,5,14];
 console.log("Array inicial:");
