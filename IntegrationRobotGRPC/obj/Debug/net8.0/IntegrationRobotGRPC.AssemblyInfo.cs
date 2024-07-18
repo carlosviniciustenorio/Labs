@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("IntegrationRobotGRPC")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e8058e7d88e3642d03ecf1c41892b4ca039a7f7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d67c9b09a7a693c6aa3e5d0f1a2d41bf2e2458cd")]
 [assembly: System.Reflection.AssemblyProductAttribute("IntegrationRobotGRPC")]
 [assembly: System.Reflection.AssemblyTitleAttribute("IntegrationRobotGRPC")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
