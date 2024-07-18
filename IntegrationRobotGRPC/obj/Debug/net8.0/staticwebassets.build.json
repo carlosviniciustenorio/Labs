@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "UWW0gFKF35dQpLtaxX/epcicqfAlBUaxN643odfHp4Q=",
+  "Source": "IntegrationRobotGRPC",
+  "BasePath": "_content/IntegrationRobotGRPC",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
