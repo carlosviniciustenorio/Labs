@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/tenorio/Desktop/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj": {}
+    "/home/tenorio/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj": {}
   },
   "projects": {
-    "/home/tenorio/Desktop/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj": {
+    "/home/tenorio/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tenorio/Desktop/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj",
+        "projectUniqueName": "/home/tenorio/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj",
         "projectName": "IntegrationRobotGRPC",
-        "projectPath": "/home/tenorio/Desktop/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj",
+        "projectPath": "/home/tenorio/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj",
         "packagesPath": "/home/tenorio/.nuget/packages/",
-        "outputPath": "/home/tenorio/Desktop/Development/Labs/IntegrationRobotGRPC/obj/",
+        "outputPath": "/home/tenorio/Development/Labs/IntegrationRobotGRPC/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/tenorio/.nuget/NuGet/NuGet.Config"
@@ -72,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/248/sdk/8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.107/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
