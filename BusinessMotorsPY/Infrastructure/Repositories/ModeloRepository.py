@@ -8,18 +8,18 @@ class ModeloRepository:
         self.db = db
 
     async def get(self, id):
-        result = await self.db.execute(
+        result = self.db.execute(
             self.db.query(Modelo).filter(Modelo.Id == id)
         )
-        return result.scalar()
+        return result.scalar_one_or_none()
 
     async def insert(self, modelo):
         try:
             self.db.add(modelo)
-            await self.db.commit()
-            await self.db.refresh(modelo)
+            self.db.commit()
+            self.db.refresh(modelo)
             return modelo
         except Exception as e:
-            await self.db.rollback()
             logger.error(f"Erro ao cadastrar modelo. Exception: {e}")
+            self.db.rollback()
             raise e

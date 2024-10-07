@@ -8,18 +8,21 @@ class MarcaRepository:
         self.db = db
 
     async def get(self, id: int):
-        result = self.db.execute(
-            self.db.query(Marca).filter(Marca.Id == id).first()
-        )
-        return result.scalar()
+        try:
+            result = self.db.execute(
+                self.db.query(Marca).filter(Marca.Id == id)
+            )
+            return result.scalar_one_or_none()
+        except Exception as e:
+            print(f"Exception: {e}")
 
     async def insert(self, marca: Marca):
         try:
             self.db.add(marca)
-            await self.db.commit()
-            await self.db.refresh(marca)
+            self.db.commit()
+            self.db.refresh(marca)
             return marca
         except Exception as ex:
-            await self.db.rollback()
+            self.db.rollback()
             logger.error(f"Erro ao inserir marca. Exception: {ex}")
             raise ex

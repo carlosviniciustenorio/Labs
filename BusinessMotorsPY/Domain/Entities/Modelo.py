@@ -6,6 +6,7 @@ from Infrastructure.Database.base import Base
 
 class Modelo(Base):
     __tablename__ = 'Modelo'
+
     Id = Column(Integer, primary_key=True, autoincrement=True)
     Descricao = Column(String)
     AnoModelo = Column(Integer)

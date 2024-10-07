@@ -1,12 +1,6 @@
 from fastapi import FastAPI, HTTPException, Response, Depends
 from sqlalchemy.orm import Session
-from Application.DTOs.Request import InsertModeloDTO
-from Application.DTOs.Request.InsertMarcaDTO import InsertMarcaDTO
-from Application.UseCases.CadastraMarcaUseCase import CadastraMarcaUseCase
-from Application.UseCases.CadastraModeloUseCase import CadastraModeloUseCase
-from Application.UseCases.ConsultaMarcaUseCase import ConsultaMarcaUseCase
-from Application.UseCases.ConsultaModeloUseCase import ConsultaModeloUseCase
-from Application.UseCases.ConsultaTipoCombustivelUseCase import ConsultaTipoCombustivelUseCase
+from Application import CadastraModeloUseCase, CadastraMarcaUseCase, ConsultaModeloUseCase, ConsultaMarcaUseCase, ConsultaTipoCombustivelUseCase, InsertModeloDTO, InsertMarcaDTO, GetTipoCombustivelDTO
 from Infrastructure.Database.db import get_db
 
 app = FastAPI()
@@ -31,7 +25,7 @@ async def get_modelo(id: int, db: Session = Depends(get_db)):
     useCase = ConsultaModeloUseCase(db)
     return await useCase.execute(id)
 
-@app.post("/modelos/", status_code=200, summary="Consulta Modelo")
+@app.post("/modelos/", status_code=200, summary="Cadastra Modelo")
 async def post_modelo(modelo: InsertModeloDTO, db: Session = Depends(get_db)):
     useCase = CadastraModeloUseCase(db)
     return await useCase.execute(modelo)

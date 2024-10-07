@@ -13,11 +13,12 @@ public class AccountController : Controller
         var properties = new AuthenticationProperties { RedirectUri = redirectUrl };
         return Challenge(properties, GoogleDefaults.AuthenticationScheme);
     }
-
+    
     [HttpGet]
     public async Task<IActionResult> GoogleResponse(string returnUrl = "/")
     {
         var result = await HttpContext.AuthenticateAsync(GoogleDefaults.AuthenticationScheme);
+    
         if (!result.Succeeded)
         {
             return RedirectToAction("AccessDenied");
@@ -27,8 +28,15 @@ public class AccountController : Controller
         var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
 
-        return LocalRedirect(returnUrl); // Redireciona para a URL solicitada
+        if (string.IsNullOrEmpty(returnUrl) || !Url.IsLocalUrl(returnUrl))
+        {
+            returnUrl = Url.Action("Index", "Home");
+        }
+
+        return LocalRedirect(returnUrl);
     }
+
+
 
     public IActionResult AccessDenied()
     {

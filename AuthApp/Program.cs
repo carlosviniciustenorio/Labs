@@ -7,18 +7,24 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddAuthentication(options =>
     {
-        options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
         options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
     })
-    .AddCookie()
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+        options.SlidingExpiration = true;
+    })
     .AddGoogle(options =>
     {
-        options.ClientId = "601031446578-v7mmdf1okfbh2pa5aggp1kvulblipmem.apps.googleusercontent.com";
-        options.ClientSecret = "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";
-        options.Scope.Add("email");
-        options.Scope.Add("profile");
+        options.ClientId = "";
+        options.ClientSecret = "";
+        options.CallbackPath = "/Account/GoogleResponse";
         options.SaveTokens = true;
         options.AccessDeniedPath = "/Home/AccessDenied";
+        options.Scope.Add("email");
+        options.Scope.Add("profile");
     });
 
 var app = builder.Build();
