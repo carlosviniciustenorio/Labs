@@ -7,5 +7,5 @@ class ConsultaMarcaUseCase:
     def __init__(self, db: Session):
         self.repo = MarcaRepository(db)
 
-    def execute(self, id):
-        return self.repo.get(id)
+    async def execute(self, id):
+        return await self.repo.get(id)

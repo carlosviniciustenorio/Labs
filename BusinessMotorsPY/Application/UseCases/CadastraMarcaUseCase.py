@@ -10,6 +10,6 @@ class CadastraMarcaUseCase:
     def __init__(self, db: Session):
         self.repo = MarcaRepository(db)
 
-    def execute(self, marcaDTO: InsertMarcaDTO):
+    async def execute(self, marcaDTO: InsertMarcaDTO):
         marca = Marca(Descricao = marcaDTO.Descricao)
-        return self.repo.insert(marca)
+        return await self.repo.insert(marca)
