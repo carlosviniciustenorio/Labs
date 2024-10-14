@@ -1,42 +1,33 @@
 import json
-
-# import requests
+import requests
 
 
 def lambda_handler(event, context):
-    """Sample pure Lambda function
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
+    if event.get("requestContext", None) is not None:
+        return {
+            "statusCode": 200,
+            "body": json.dumps({
+                "message": "This message is from api gateway process"
+            }),
+        }
 
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
+    if event.get("Records", None) is not None:
+        response = []
+        for record in event['Records']:
+            response.append(
+                {
+                    'messageId':record['messageId'],
+                    'correlationId': record['messageAttributes']['correlationId'],
+                    'body': record['body']
+                }
+            )
 
-    context: object, required
-        Lambda Context runtime methods and attributes
+        return {
 
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
-
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
-
-    # try:
-    #     ip = requests.get("http://checkip.amazonaws.com/")
-    # except requests.RequestException as e:
-    #     # Send some context about this error to Lambda Logs
-    #     print(e)
-
-    #     raise e
-
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            # "location": ip.text.replace("\n", "")
-        }),
-    }
+            "statusCode": 200,
+            "body": json.dumps({
+                "data": response,
+                "message": "Is from SQS"
+            }),
+        }
