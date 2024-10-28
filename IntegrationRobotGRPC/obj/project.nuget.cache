@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GaBQLZ464Ws7v3Mq+A3LlWTEa32KDpE+SVSJC8q3Nji5Qm3K9DWVpK3v0DAgEnGYrshYw7ATkU15UPZNAqI28w==",
+  "dgSpecHash": "E4/4QSli6dk=",
   "success": true,
   "projectFilePath": "/home/tenorio/Development/Labs/IntegrationRobotGRPC/IntegrationRobotGRPC.csproj",
   "expectedPackageFiles": [
@@ -23,7 +23,10 @@
     "/home/tenorio/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/home/tenorio/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "/home/tenorio/.nuget/packages/system.diagnostics.diagnosticsource/6.0.0/system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
-    "/home/tenorio/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    "/home/tenorio/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/home/tenorio/.nuget/packages/microsoft.netcore.app.ref/8.0.10/microsoft.netcore.app.ref.8.0.10.nupkg.sha512",
+    "/home/tenorio/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.10/microsoft.aspnetcore.app.ref.8.0.10.nupkg.sha512",
+    "/home/tenorio/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.10/microsoft.netcore.app.host.linux-x64.8.0.10.nupkg.sha512"
   ],
   "logs": []
 }
