@@ -1,10 +1,15 @@
 import logging
 
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from Infrastructure.Database.db import get_db
+
 from Domain.Entities.Modelo import Modelo
+
 logger = logging.getLogger(__name__)
 
 class ModeloRepository:
-    def __init__(self, db):
+    def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
     async def get(self, id):

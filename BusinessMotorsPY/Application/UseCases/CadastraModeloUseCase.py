@@ -1,4 +1,4 @@
-from sqlalchemy.orm import Session
+from fastapi import Depends
 
 from Application.DTOs.Request.InsertModeloDTO import InsertModeloDTO
 from Domain.Entities.Modelo import Modelo
@@ -7,9 +7,12 @@ from Infrastructure.Repositories.ModeloRepository import ModeloRepository
 
 
 class CadastraModeloUseCase:
-    def __init__(self, db: Session):
-        self.modeloRepository = ModeloRepository(db)
-        self.marcaRepository = MarcaRepository(db)
+    def __init__(self,
+                 modeloRepository: ModeloRepository = Depends(),
+                 marcaRepository: MarcaRepository = Depends()
+                 ):
+        self.modeloRepository = modeloRepository
+        self.marcaRepository = marcaRepository
 
     async def execute(self, modeloDTO: InsertModeloDTO):
         marca = self.marcaRepository.get(modeloDTO.MarcaId)

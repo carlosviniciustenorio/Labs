@@ -1,8 +1,11 @@
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from Infrastructure.Database.db import get_db
+
 from Domain.Entities.TipoCombustivel import TipoCombustivel
 
-
 class TipoCombustivelRepository:
-    def __init__(self, db):
+    def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
     def create(self, entity):

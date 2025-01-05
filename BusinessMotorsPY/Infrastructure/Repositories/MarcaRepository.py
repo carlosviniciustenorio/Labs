@@ -1,10 +1,15 @@
 import logging
+
+from fastapi import Depends
+from sqlalchemy.orm import Session
+from Infrastructure.Database.db import get_db
+
 from Domain.Entities.Marca import Marca
 
 logger = logging.getLogger(__name__)
 
 class MarcaRepository:
-    def __init__(self, db):
+    def __init__(self, db: Session = Depends(get_db)):
         self.db = db
 
     async def get(self, id: int):

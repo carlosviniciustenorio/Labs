@@ -1,12 +1,12 @@
 from xxlimited_35 import error
 
-from sqlalchemy.orm import Session
+from fastapi import Depends
 from Infrastructure.Repositories.TipoCombustivelRepository import TipoCombustivelRepository
 
 
 class ConsultaTipoCombustivelUseCase:
-    def __init__(self, db: Session):
-        self.repo = TipoCombustivelRepository(db)
+    def __init__(self, tipoCombustivelRepository: TipoCombustivelRepository = Depends()):
+        self.repo = tipoCombustivelRepository
 
     def execute(self, GetTipoCombustivel):
         try:

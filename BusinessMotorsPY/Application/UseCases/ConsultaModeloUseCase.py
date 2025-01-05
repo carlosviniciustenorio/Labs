@@ -1,12 +1,12 @@
 import logging
-from sqlalchemy.orm import Session
 
+from fastapi import Depends
 from Infrastructure.Repositories.ModeloRepository import ModeloRepository
 logger = logging.getLogger(__name__)
 
 class ConsultaModeloUseCase:
-    def __init__(self, db: Session):
-        self.modeloRepository = ModeloRepository(db)
+    def __init__(self, modeloRepository: ModeloRepository = Depends()):
+        self.modeloRepository = modeloRepository
 
     async def execute(self, id: int):
         try:
