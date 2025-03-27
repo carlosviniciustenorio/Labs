@@ -1,6 +1,6 @@
 data = [7, 5, 1, 3, 2, 8, 4, 6, 9]
 
-#Best Case: O(n)
+#Best Case: O(n^2)
 #Average: O(n^2)
 #Worst Case: O(n^2)
 def sort(data):
