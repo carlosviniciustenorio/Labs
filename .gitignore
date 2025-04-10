@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment
+venv/
+ENV/
+env/
+.venv/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# PyCharm / VSCode
+.idea/
+.vscode/
+
+# Arquivos temporários
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Modelos salvos (se não quiser versionar)
+*.h5
+*.pb
+*.keras
+*.ckpt
+*.tflite
+
+# TensorBoard logs
+logs/
+events.out.tfevents.*
+
+# Arquivos de teste
+*.pytest_cache/
+__tests__/
+
+# Arquivos de cache do pip
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# Arquivos de configuração locais
+.env
+.env.*
+
+# Arquivos do sistema
+*.bak
+*.old
