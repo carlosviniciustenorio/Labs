@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/tenorio/Desktop/Development/Labs/DataStructure/DataStructure.csproj": {}
+    "/home/tenorio/Development/Labs/DataStructure/DataStructure.csproj": {}
   },
   "projects": {
-    "/home/tenorio/Desktop/Development/Labs/DataStructure/DataStructure.csproj": {
+    "/home/tenorio/Development/Labs/DataStructure/DataStructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/tenorio/Desktop/Development/Labs/DataStructure/DataStructure.csproj",
+        "projectUniqueName": "/home/tenorio/Development/Labs/DataStructure/DataStructure.csproj",
         "projectName": "DataStructure",
-        "projectPath": "/home/tenorio/Desktop/Development/Labs/DataStructure/DataStructure.csproj",
+        "projectPath": "/home/tenorio/Development/Labs/DataStructure/DataStructure.csproj",
         "packagesPath": "/home/tenorio/.nuget/packages/",
-        "outputPath": "/home/tenorio/Desktop/Development/Labs/DataStructure/obj/",
+        "outputPath": "/home/tenorio/Development/Labs/DataStructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/tenorio/.nuget/NuGet/NuGet.Config"
@@ -32,6 +32,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -53,7 +58,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/245/sdk/8.0.300/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.408/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
