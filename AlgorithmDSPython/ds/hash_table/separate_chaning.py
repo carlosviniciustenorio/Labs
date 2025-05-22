@@ -20,3 +20,11 @@ class HashTableChaining:
             if k == key:
                 return v
         return None
+
+def test():
+    htb = HashTableChaining()
+    htb.insert(13, "A")
+    htb.insert(23, "B")
+    htb.insert(33, "C")
+
+test()
