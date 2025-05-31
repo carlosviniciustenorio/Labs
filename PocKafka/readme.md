@@ -30,7 +30,23 @@
 * **Zookeeper (ou KRaft no Kafka moderno)**
   Serviço que gerencia a configuração e coordena o cluster (quem é líder, onde ficam as partições, etc). No Kafka mais novo, está sendo substituído pelo próprio Kafka (KRaft mode).
 
----
+* **Ordenação e Idempotência**
+  O Kafka distribui mensagens em partições de um tópico.
+
+  Quando uma mensagem tem uma key, o Kafka calcula:
+  partição = hash(key) % número_de_partições
+
+  Mensagens com a mesma key sempre vão para a mesma partição.
+
+  Isso garante ordenamento das mensagens por key dentro da partição.
+
+  Se a mensagem não tem key, o Kafka distribui entre as partições em round-robin.
+
+  Essa lógica funciona como uma hash table para balancear e agrupar mensagens.
+
+  Útil para garantir idempotência e ordenação de objetos que são atualizados constantemente.
+
+  Consumidores lêem mensagens por partição, o que permite paralelismo e escalabilidade.
 
 **Como funciona o fluxo básico:**
 Produtores enviam mensagens para tópicos → tópicos armazenam as mensagens em partições distribuídas nos brokers → consumidores leem as mensagens das partições → offsets ajudam a controlar o progresso da leitura.
