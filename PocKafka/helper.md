@@ -4,7 +4,8 @@ docker exec kafka1 kafka-topics --alter --topic meu-topico --partitions 3 --boot
 docker exec kafka1 kafka-topics --delete --topic meu-topico --bootstrap-server kafka:9092
 docker exec kafka1 kafka-topics --describe --topic meu-topico --bootstrap-server localhost:9092
 
-Boa pergunta! Kafka e RabbitMQ são sistemas de mensageria, ambos podem trabalhar com pub/sub, mas têm diferenças importantes na arquitetura, uso e propósito. Vou te resumir as principais diferenças:
+chmod +x gerar-certificados.sh
+./gerar-certificados.sh
 
 ---
 
