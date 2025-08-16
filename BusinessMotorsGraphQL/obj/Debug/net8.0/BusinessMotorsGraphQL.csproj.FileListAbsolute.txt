@@ -1,6 +1,5 @@
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/bin/Debug/net8.0/appsettings.Development.json
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/bin/Debug/net8.0/appsettings.json
-/home/tenorio/Development/Labs/BusinessMotorsGraphQL/bin/Debug/net8.0/BusinessMotorsGraphQL.staticwebassets.endpoints.json
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/bin/Debug/net8.0/BusinessMotorsGraphQL
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/bin/Debug/net8.0/BusinessMotorsGraphQL.deps.json
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/bin/Debug/net8.0/BusinessMotorsGraphQL.runtimeconfig.json
@@ -59,9 +58,7 @@
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/scopedcss/bundle/BusinessMotorsGraphQL.styles.css
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/staticwebassets.build.json
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/staticwebassets.development.json
-/home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/staticwebassets.build.endpoints.json
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/staticwebassets/msbuild.BusinessMotorsGraphQL.Microsoft.AspNetCore.StaticWebAssets.props
-/home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/staticwebassets/msbuild.BusinessMotorsGraphQL.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/staticwebassets/msbuild.build.BusinessMotorsGraphQL.props
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.BusinessMotorsGraphQL.props
 /home/tenorio/Development/Labs/BusinessMotorsGraphQL/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.BusinessMotorsGraphQL.props

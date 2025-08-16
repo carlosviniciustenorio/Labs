@@ -12,4 +12,10 @@ public class CarroService
     };
 
     public IEnumerable<Carro> GetCarros() => _carros;
+
+    public void AdicionarCarro(Carro carro)
+{
+    carro.Id = _carros.Count + 1;
+    _carros.Add(carro);
+}
 }

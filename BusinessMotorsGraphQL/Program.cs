@@ -1,5 +1,6 @@
 using BusinessMotorsGraphQL.Queries;
 using BusinessMotorsGraphQL.Services;
+using BusinessMotorsGraphQL.Mutations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<CarroService>();
 builder.Services.AddGraphQLServer()
-                .AddQueryType<CarroQuery>();
+                .AddQueryType<CarroQuery>()
+                .AddMutationType<CarroMutation>();
 
 var app = builder.Build();
 

@@ -1,12 +1,11 @@
 {
   "Version": 1,
-  "Hash": "KbcVyboYNOKIaxAcDyiSGxWpfdDo6MIcI+iajpmPHVg=",
+  "Hash": "HQhmRcdEXQAKmiw8lOHUG9fKUzDUr6JoaAHL8+VKMNU=",
   "Source": "BusinessMotorsGraphQL",
   "BasePath": "_content/BusinessMotorsGraphQL",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "Assets": []
 }

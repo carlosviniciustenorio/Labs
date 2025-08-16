@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yC/L3fiisvU=",
+  "dgSpecHash": "QxbZKHy5D3c=",
   "success": true,
   "projectFilePath": "/home/tenorio/Development/Labs/BusinessMotorsGraphQL/BusinessMotorsGraphQL.csproj",
   "expectedPackageFiles": [
@@ -53,10 +53,7 @@
     "/home/tenorio/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.6.2/swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512",
     "/home/tenorio/.nuget/packages/system.io.hashing/8.0.0/system.io.hashing.8.0.0.nupkg.sha512",
     "/home/tenorio/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
-    "/home/tenorio/.nuget/packages/yarp.reverseproxy/2.2.0/yarp.reverseproxy.2.2.0.nupkg.sha512",
-    "/home/tenorio/.nuget/packages/microsoft.netcore.app.ref/8.0.10/microsoft.netcore.app.ref.8.0.10.nupkg.sha512",
-    "/home/tenorio/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.10/microsoft.aspnetcore.app.ref.8.0.10.nupkg.sha512",
-    "/home/tenorio/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.10/microsoft.netcore.app.host.linux-x64.8.0.10.nupkg.sha512"
+    "/home/tenorio/.nuget/packages/yarp.reverseproxy/2.2.0/yarp.reverseproxy.2.2.0.nupkg.sha512"
   ],
   "logs": []
 }
