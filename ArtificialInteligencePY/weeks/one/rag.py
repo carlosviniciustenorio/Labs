@@ -6,7 +6,7 @@ import json
 import re
 
 
-def smart_chunk(text, max_length=300):
+def smart_chunk(text, max_length=100):
     sentences = re.split(r'(?<=[.!?]) +', text)
     chunks = []
     current = ""
