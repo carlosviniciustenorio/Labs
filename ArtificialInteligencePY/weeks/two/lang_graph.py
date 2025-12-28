@@ -72,8 +72,8 @@ def decidir_contexto(state: Estado) -> dict:
 
 
 def buscar_contexto(state: Estado) -> dict:
-    state["contexto"] = search(state["pergunta"], 2)[0]
-    return state
+    context = search(state["pergunta"], 2)[0]
+    return {"contexto": context}
 
 
 def gerar_resposta(state: Estado) -> dict:
