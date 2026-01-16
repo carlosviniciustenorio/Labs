@@ -2,7 +2,7 @@ from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import ToolMessage
 
-from mcp_tool import add_numbers
+from mcp.mcp_tool_http import add_numbers
 
 
 llm = ChatOllama(
@@ -14,21 +14,18 @@ tools = [add_numbers]
 llm_with_tools = llm.bind_tools(tools)
 
 prompt = ChatPromptTemplate.from_messages([
-    ("system", "Você é o ArchAgent. Sempre use ferramentas quando houver cálculo."),
+    ("system", "Você é o MathAgent. Sempre use ferramentas quando houver cálculo."),
     ("human", "{input}")
 ])
 
 
 def run_agent(user_input: str):
     chain = prompt | llm_with_tools
-
-    # 1️⃣ Primeira chamada ao modelo
     response = chain.invoke({"input": user_input})
 
     print("\n🔹 Model response:")
     print(response)
 
-    # 2️⃣ Se o modelo pediu tool
     if response.tool_calls:
         tool_messages = []
 
@@ -48,7 +45,6 @@ def run_agent(user_input: str):
                     )
                 )
 
-        # 3️⃣ Segunda chamada com resultado da tool
         final_response = llm_with_tools.invoke(
             [response, *tool_messages]
         )
