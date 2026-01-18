@@ -1,7 +1,7 @@
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import ToolMessage
-
+from langsmith import traceable
 from mcp.mcp_tool_http import add_numbers
 
 
@@ -18,7 +18,7 @@ prompt = ChatPromptTemplate.from_messages([
     ("human", "{input}")
 ])
 
-
+@traceable(name="run_agent")
 def run_agent(user_input: str):
     chain = prompt | llm_with_tools
     response = chain.invoke({"input": user_input})

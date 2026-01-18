@@ -1,3 +1,4 @@
+import os
 import re
 import faiss
 import numpy as np
@@ -6,12 +7,22 @@ from typing import TypedDict, Optional
 from sentence_transformers import SentenceTransformer
 from langchain_ollama import ChatOllama
 from langgraph.graph import StateGraph, END
+from langsmith import traceable
+
+
+# =========================
+# LangSmith setup (local safe)
+# =========================
+
+os.environ.setdefault("LANGSMITH_TRACING", "true")
+os.environ.setdefault("LANGSMITH_PROJECT", "My First App")
 
 
 # =========================
 # 1. RAG
 # =========================
 
+@traceable(name="smart_chunk")
 def smart_chunk(text, max_length=120):
     sentences = re.split(r'(?<=[.!?]) +', text)
     chunks, current = [], ""
@@ -37,6 +48,7 @@ docs = []
 for d in docs_raw:
     docs.extend(smart_chunk(d))
 
+
 embedder = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 embeddings = embedder.encode(docs)
 
@@ -44,6 +56,7 @@ index = faiss.IndexFlatL2(embeddings.shape[1])
 index.add(np.array(embeddings))
 
 
+@traceable(name="faiss_retrieve")
 def retrieve(query: str, k=2) -> str:
     q_emb = embedder.encode([query])
     _, ids = index.search(np.array(q_emb), k)
@@ -77,6 +90,7 @@ critico_llm = ChatOllama(model="mistral", temperature=0)
 # 4. Nós
 # =========================
 
+@traceable(name="decidir_contexto")
 def decidir_contexto(state: Estado) -> dict:
     prompt = f"""
 Você é um orquestrador.
@@ -88,10 +102,12 @@ Essa pergunta precisa de contexto externo para ser respondida corretamente?
     return {"precisa_contexto": "sim" in resp}
 
 
+@traceable(name="buscar_contexto")
 def buscar_contexto(state: Estado) -> dict:
     return {"contexto": retrieve(state["pergunta"])}
 
 
+@traceable(name="gerar_resposta")
 def gerar_resposta(state: Estado) -> dict:
     prompt = f"""
 Você é um especialista técnico.
@@ -109,6 +125,7 @@ Resposta:
     return {"resposta": resposta, "tentativas": state["tentativas"] + 1}
 
 
+@traceable(name="criticar_resposta")
 def criticar_resposta(state: Estado) -> dict:
     prompt = f"""
 Você é um revisor técnico rigoroso.
@@ -128,6 +145,7 @@ Crítica: <texto curto>
     return {"resposta_boa": ok, "critica": critica}
 
 
+@traceable(name="melhorar_resposta")
 def melhorar_resposta(state: Estado) -> dict:
     prompt = f"""
 Você é um especialista melhorando sua própria resposta.
@@ -179,7 +197,7 @@ app = graph.compile()
 
 if __name__ == "__main__":
     estado_inicial: Estado = {
-        "pergunta": "Explique o que é Kafka em uma frase.",
+        "pergunta": "Explique o que é Apache Kafka.",
         "contexto": None,
         "resposta": None,
         "critica": None,
@@ -188,7 +206,17 @@ if __name__ == "__main__":
         "resposta_boa": False
     }
 
-    resultado = app.invoke(estado_inicial)
+    resultado = app.invoke(
+        estado_inicial,
+        config={
+            "tags": ["local", "rag", "langgraph", "langsmith","mistral"],
+            "metadata": {
+                "autor": "carlos",
+                "pipeline": "rag-critico",
+                "versao": "v1"
+            }
+        }
+    )
 
     print("\nResposta final:")
     print(resultado["resposta"])
