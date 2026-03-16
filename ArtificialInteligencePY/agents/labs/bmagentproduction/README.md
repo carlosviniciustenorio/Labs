@@ -19,6 +19,19 @@ O fluxo principal do agent é:
 
 Tudo isso é orquestrado pelo **LangGraph** usando um `StateGraph`.
 
+| Pilar               | O que significa na prática                 |
+| --------------        | ------------------------------------------ |
+| Perception        | Entender intenção + tipo de tarefa         |
+| Planner            | Quebrar em passos executáveis              |
+| Tool Discovery | Decidir quais ferramentas usar             |
+| Tools               | Funções reais (API, DB, RAG, FS, HTTP etc) |
+| Executor          | Orquestrar chamadas + estado               |
+| Validator          | Verificar qualidade / segurança            |
+| Reflection        | Aprender com erro                          |
+| Retry               | Corrigir estratégia                        |
+| Memory           | Persistir contexto                         |
+| Observability    | Tracing, métricas, logs                    |
+
 ---
 
 ## 🧱 Componentes
