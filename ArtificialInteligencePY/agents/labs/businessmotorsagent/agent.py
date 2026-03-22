@@ -30,6 +30,30 @@ class State(TypedDict):
 
 # --------------------- Nodes -----------------
 
+def should_execute(state: State):
+    prompt = f"""
+        You're a motors agent, and should decide if the user prompt is clear or not to execute directly.
+        - Rules:
+         - If the user prompt is about motors (cars, motorcycles, etc.) and it's clear to execute, valid should be true.
+         - If the user prompt is outside the motors domain or unclear, valid should be false.
+         - Reply with JSON only using this schema: {{"valid": boolean, "reason": string}}.
+         - reason should explain why the request was rejected when valid is false.
+         - reason can be an empty string when valid is true.
+        User prompt: {state['ask']}
+    """
+
+    r = llm.invoke(prompt).content
+    try:
+        parsed = json.loads(r)
+        is_valid = bool(parsed.get("valid", False))
+        reason = str(parsed.get("reason", "")).strip()
+    except (json.JSONDecodeError, TypeError, ValueError):
+        normalized = r.strip().lower()
+        is_valid = normalized == "true"
+        reason = "I can only answer questions about motors such as cars or motorcycles." if not is_valid else ""
+
+    return {"valid": is_valid, "result": None if is_valid else reason}
+
 def enhance_prompt(state: State):
     prompt = f"""
         You should enhrance the user prompt below
@@ -97,23 +121,37 @@ def should_continue(state: State):
         return "end"
     return "retry"
 
+def execution_is_valid(state: State):
+    if state["valid"]:
+        return "continue"
+    return "end"
+
 # ----------------------  GRAPH ---------------------
 
 graph = StateGraph(State)
-    
+
+graph.add_node("should_execute", should_execute)
 graph.add_node("enhance_prompt", enhance_prompt)
 graph.add_node("perception", perception)
 graph.add_node("plan", plan)
 graph.add_node("executor", executor)
 graph.add_node("validator", validator)
 
-graph.set_entry_point("enhance_prompt")
+graph.set_entry_point("should_execute")
 
 graph.add_edge("enhance_prompt","perception")
 graph.add_edge("perception", "plan")
 graph.add_edge("plan", "executor")
 graph.add_edge("executor", "validator")
 
+graph.add_conditional_edges(
+    "should_execute",
+    execution_is_valid,
+    {
+        "continue": "enhance_prompt",
+        "end": END,
+    }
+)
 graph.add_conditional_edges(
     "validator", 
     should_continue, 
