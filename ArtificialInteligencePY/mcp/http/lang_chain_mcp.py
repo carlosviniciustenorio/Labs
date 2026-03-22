@@ -2,7 +2,7 @@ from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.messages import ToolMessage
 from langsmith import traceable
-from mcp.mcp_tool_http import add_numbers
+from mcp.http.mcp_tool_http import add_numbers
 
 
 llm = ChatOllama(

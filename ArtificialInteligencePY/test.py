@@ -1,6 +1,13 @@
 from functools import reduce
+import re
 
 nomes = ["Carlos", "Ana", "Pedro", "Beatriz"]
+
+texto = "Olá, meu nome é Carlos. Eu gosto de Python, e meu nome é Carlos. Eu gosto de Java, e meu nome é Carlos. Você pode me chamar de Carlos?"
+
+sentences = re.split(r'(?<=[.!?]) +', texto)
+for s in sentences:
+    print(s)
 
 for nome in nomes:
     print(nome)
